@@ -6,9 +6,11 @@
   </head>
   <body>
     <script type="module">
-      import init, { greet } from "./pkg/Frontend.js";
+      import init, { greet, add_numbers, multiply_numbers } from "./pkg/Frontend.js";
       init().then(() => {
         greet("WebAssembly");
+        window.add_numbers = add_numbers;
+        window.multiply_numbers = multiply_numbers;
       });
     </script>
   </body>
