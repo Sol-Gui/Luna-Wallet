@@ -1,4 +1,5 @@
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct Transaction {
     pub id: String,
     pub sender: String,
@@ -14,6 +15,7 @@ pub struct Transaction {
 }
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct Wallet {
     pub id: u8,
     pub balance: f64,
