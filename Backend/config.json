@@ -1,0 +1,14 @@
+{
+    "Accounts-By-Id": {
+        "1": {
+            "Lamports": 10000000,
+            "Tokens": {
+                "AAPL": 1000,
+                "BTC": 500
+            },
+            "Transaction-Fee": 0.00000005,
+            "Rpc": "https://api.mainnet-beta.solana.com",
+            "Private-Key-Bytes": []
+        }
+    }
+}
