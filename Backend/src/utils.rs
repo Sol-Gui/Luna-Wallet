@@ -1,15 +1,48 @@
-extern crate dotenv;
-use crate::state::Wallet;
+use crate::state::{Wallet, Config, Token};
+use std::fs::File;
+use std::collections::HashMap;
+use std::io::Write;
+use serde_json;
 
-pub fn get_env_data() -> Wallet {
-    // Load environment variables from a .env file
-    dotenv::from_filename("config.env").ok().expect("Falha ao carregar o arquivo config.env");
 
-    Wallet {
-        id: dotenv::var("ID").unwrap().parse::<u8>().unwrap(),
-        balance: dotenv::var("BALANCE").unwrap().parse::<f64>().unwrap(),
-        address: dotenv::var("ADDRESS").unwrap(),
-        rpc: dotenv::var("WALLET_RPC_URL").unwrap(),
-        transaction_fee: dotenv::var("TRANSACTION_FEE").unwrap().parse::<f64>().unwrap(),
-    }
+fn save_config(config: &Config, filename: &str) -> std::io::Result<()> {
+    let json = serde_json::to_string_pretty(config)?;
+    let mut file = File::create(filename)?;
+    file.write_all(json.as_bytes())?;
+    Ok(())
+}
+
+pub fn create_config_file(
+    walletAddress: String, privateKey: String, lamports_w: u64, _tokens_vec: Vec<Token>, 
+    transactionFee: f64, rpc_w: String, hashedPassword: String, accountName: String
+) {
+
+    let mut accounts = HashMap::new();
+
+    let mut tokens_vec: Vec<Token> = Vec::new();
+
+    tokens_vec.push( Token {
+        name: "Bitcoin".to_string(),
+        address: "btc_address".to_string(),
+        amount: 500,
+        decimals: 8,
+    });
+
+    let wallet = Wallet {
+        address: walletAddress,
+        private_key: privateKey,
+        lamports: lamports_w,
+        tokens: tokens_vec,
+        transaction_fee: transactionFee,
+        rpc: rpc_w,
+    };
+
+    accounts.insert(accountName.to_string(), wallet);
+
+    let config = Config {
+        account_password: hashedPassword,
+        accounts_by_id: accounts,
+    };
+
+    save_config(&config, "config.json").expect("Failed to save config file");
 }

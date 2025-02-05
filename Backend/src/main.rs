@@ -1,11 +1,11 @@
-mod utils;
 mod state;
 mod wallet;
+mod password;
+pub mod utils;
 
 fn main() {
     println!("Hello, world!");
-    let x = utils::get_env_data();
-    println!("Value of X: {:?}", x);
 
     wallet::create_new_wallet();
+    password::set_password("123456".to_string());
 }

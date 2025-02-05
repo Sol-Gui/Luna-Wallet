@@ -1,14 +1,20 @@
 {
-    "Accounts-By-Id": {
-        "1": {
-            "Lamports": 10000000,
-            "Tokens": {
-                "AAPL": 1000,
-                "BTC": 500
-            },
-            "Transaction-Fee": 0.00000005,
-            "Rpc": "https://api.mainnet-beta.solana.com",
-            "Private-Key-Bytes": []
+  "account_password": "123456",
+  "accounts_by_id": {
+    "Main Account": {
+      "address": "3HrNKQNB4fz5nCpGrwcoFgCrAZ45oFU5iNwLuTpQzayg",
+      "private_key": "4TWtp4Hx8n1UhNeKs1UfWcfgxaGzfCT3uerGQTP2cconjN3pwWeRJngMVsLekjDgMZ2mjkrAqP6UhoWh4y37RkHg",
+      "lamports": 0,
+      "tokens": [
+        {
+          "name": "Bitcoin",
+          "address": "btc_address",
+          "amount": 500,
+          "decimals": 8
         }
+      ],
+      "transaction_fee": 0.0,
+      "rpc": "http://localhost:8899"
     }
+  }
 }

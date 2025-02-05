@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+blake3 = "1.5.5"
 bs58 = "0.5.1"
-dotenv = "0.15.0"
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.138"
 solana-sdk = "1.18.26"
